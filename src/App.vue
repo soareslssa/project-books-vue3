@@ -1,41 +1,33 @@
 <script setup>
-import { ref ,reactive } from 'vue';
+import { reactive } from 'vue';
+import Progress from './components/Progress.vue'
 
-// ref para primitivos: valores ficam armazenados dentro do value
-let count = ref(0);
-
-// reactive para objetos
-
-let newCourse = {};
+let newCourse = {done:false};
 
 let courses = reactive([
   {
-    title: 'Javascript'
+    title: 'Javascript',
+    done: true
   },  
   {
-    title: 'React'
+    title: 'React',
+    done: false
   },  
   {
-    title: 'Vue'
+    title: 'Vue',
+    done: false
   },
 ])
 
 function addCourse () {
   courses.push(newCourse);
-  newCourse = {}
-}
-
-function increment() {
-  count.value++;
+  newCourse = {done:false}
 }
 
 
 </script>
 <template>
   <div>
-      <h1>{{ count }}</h1>
-      <button @click="increment">Incrementar</button>
-
       <h1>Lista de Cursos</h1>
       <h2 v-for="(course, index) in courses" :key="index">
           {{ course.title }}
@@ -44,8 +36,9 @@ function increment() {
       <br/>
       <input v-model="newCourse.title" type="text">
       <button @click="addCourse">Adicionar</button>
-  </div>
-</template>
+    </div>
+    <Progress :courses="courses"/>
+  </template>  
 
 <style scoped>
 </style>
