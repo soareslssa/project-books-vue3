@@ -53,6 +53,12 @@ function toggleIsRead (id) {
   })
 
 }
+
+function addBook(newBook) {
+  newBook.id = Math.max(...books.map(book => book.id)) + 1;
+  books.push(newBook);
+  showAddBook.value = false;
+}
 </script>
 <template>
     <div v-if="!showAddBook" class="container">
@@ -72,7 +78,7 @@ function toggleIsRead (id) {
         </div>
     </div>
     <div v-else class="container">
-      <AddBook @closeAddBook="showAddBook = false" />
+      <AddBook @addBook="addBook" @closeAddBook="showAddBook = false" />
     </div>
   </template>  
 
