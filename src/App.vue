@@ -1,5 +1,6 @@
 <script setup>
 import { reactive } from "vue";
+import BookProgress from "./components/BookProgress.vue";
 import Books from "./components/Books.vue"
 
 let books =  reactive   ([
@@ -64,6 +65,7 @@ function toggleIsRead (id) {
      
         <div class="books-container">
           <Books @toggleIsRead="toggleIsRead" :books="books"/>
+          <BookProgress :books="books"/>
         </div>
       </div>
   </template>  
